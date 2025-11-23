@@ -1,6 +1,10 @@
+![Status do Projeto](https://img.shields.io/badge/Status-Em%20Desenvolvimento-yellow)
+
 # Simulando Ataques de Brute Force de Senhas com Medusa e Kali Linux
 
-<placeholder>
+<p align="left">
+    <img src="images/hacking1.gif" alt="Hacking Gif" width="200">
+</p>
   
 Neste projeto, fiz uma simulação de um ataque Brute Force de Senhas utilizando Medusa e o Kali Linux nos protocolos de rede FTP (Transferência de arquivos), HTTP (Web) e SMB (Compartilhamento de recursos).
 <br>

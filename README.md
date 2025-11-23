@@ -1,4 +1,4 @@
-![Status do Projeto](https://img.shields.io/badge/Status-Em%20Desenvolvimento-yellow)
+![Status do Projeto](https://img.shields.io/badge/Status-Finalizado-green)
 
 # Simulando Ataques de Brute Force de Senhas com Medusa e Kali Linux
 

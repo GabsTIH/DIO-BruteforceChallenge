@@ -77,6 +77,32 @@ Como resultado do ataque, foram encontrados o login msfadmin e a senha msfadmin 
 
 
 <p align="left">
-    <img src="images/print9.png" alt="MedusaAttackSucessful1" width="400">
+    <img src="images/print9.png" alt="MedusaAttackSuccessful1" width="400">
 </p>
+
+## Simulando um ataque web (HTTP) fazendo Brute Force em formulários de login web no sistema do DVWA
+
+1º - Acessaremos no navegador o endereço 192.168.XX.XXX/dvwa/login.php para visualizar a página de teste de login do DVWA.
+<br>
+Na sequência, abriremos o painel de ferramentas do desenvolvedor na página de teste de login do DVWA pressionando F12. Logo em seguida clicaremos na guia network, e realizaremos uma tentativa de login na página, ficando de olho no que a aba Network retornar, muito possivelmente veremos um status de "POST", clicando nele, iremos em "Request" na aba ao lado direito. Com isso, mostrará tudo o que o navegador está enviando e recebendo durante a interação, incluindo os nomes dos parâmetros que o servidor espera receber. A Medusa vai simular em cima destes parâmetros.
+
+<p align="left">
+    <img src="images/print10.png" alt="Página Web" width="400">
+</p>
+
+2º - No terminal, após criadas as wordlists de usuários e de senhas, rodaremos o seguinte comando: medusa -h nú.me.ro.ip -U users.txt -P pass.txt -M http -m PAGE:'/dvwa/login.php' -m FORM:'username=^USER^&password=^PASS^&Login=Login' -m 'FAIL=Login failed' -t 6
+As credenciais corretas encontradas aparecerão com a palavra SUCCESS.
+<p align="left">
+    <img src="images/print12B.png" alt="MedusaAttack2" width="400">
+</p>
+<p align="left">
+    <img src="images/print12A.png" alt="MedusaAttackSuccessful2" width="400">
+</p>
+Em seguida utilizamos o primeiro login e senha encontrados para acessar o sistema.
+<p align="left">
+    <img src="images/print11.png" alt="MedusaAttackSuccessful2" width="400">
+</p>
+E assim, entramos na página web.
+
+## Simulando Ataque SMB (Server Message Block) usando ataques de enumeração e spraying contra o serviço SMB.
 

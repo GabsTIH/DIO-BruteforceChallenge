@@ -25,14 +25,14 @@ Desafio proposto pela DIO para testar conhecimentos à respeito do Bruteforce e 
 4º - Digite o comando "ip a" no metasploitable e anote o ip da máquina que estará na linha inet addr. Este será o ip utilizado para os testes do Kali.
 
 <p align="left">
-    <img src="images/print3.png" alt="Snapshot" width="400">
+    <img src="images/print3.png" alt="IP A" width="400">
 </p>
 
-5º - Digite o comando "ping -c 3 nú.me.ro.ip" para testar se nossa máquina consegue se comunicar com o ip alvo
+5º - Digite o comando "ping -c 3 192.168.XX.XXX" para testar se nossa máquina consegue se comunicar com o ip alvo
 Se houve resposta, significa que nossas duas máquinas estão se comunicando sem problemas.
 
 <p align="left">
-    <img src="images/print4.png" alt="Snapshot" width="400">
+    <img src="images/print4.png" alt="Ping" width="400">
 </p>
 
 <br>
@@ -41,15 +41,42 @@ Se houve resposta, significa que nossas duas máquinas estão se comunicando sem
 
 1º - Faremos uma enumeração para descobrir quais portas estão disponíveis no ip alvo com suspeita de vulnerabilidade.
 <br>
-O comando que utilizaremos será o seguinte: nmap -sV -p 21,22,80,445,139 192.168.xx.x
+O comando que utilizaremos será o seguinte: nmap -sV -p 21,22,80,445,139 192.168.XX.XXX
 Se a porta ftp estiver aberta tentaremos conectá-la diretamente.
 <p align="left">
-    <img src="images/print5A.png" alt="Snapshot" width="400">
+    <img src="images/print5A.png" alt="NMap" width="400">
 </p>
 
 2º - Ao confirmar as portas, agora tentaremos conectar diretamente ao FTP, com a finalidade de verificar se o mesmo recebe nossa conexão
 O comando em questão será: ftp 192.168.XX.XXX
 <p align="left">
-    <img src="images/print6.png" alt="Snapshot" width="400">
+    <img src="images/print6A.png" alt="FTP failed" width="400">
 </p>
-Caso a conexão aconteça pedirá o login e a senha. Como ainda não sabemos nenhum dos dois precisaremos fazer um ataque brute force (força bruta) utilizando a ferramenta Medusa para tentar descobri-los. Antes disso temos que criar duas listas: uma com possíveis nomes de usuários e outra com senhas comuns.
+Ao se conectar, ele vai pedir para que digitemos um login e uma senha. Como ainda não sabemos ambos, precisaremos fazer um ataque de Brute Force utilizando a ferramenta Medusa para tentar descobrir o login e a senha. Antes de tudo, criaremos duas listas: uma com possíveis nomes de usuários e outra com senhas comuns.
+
+### Criando nomes de usuários e senhas comuns (wordlists) em diferentes arquivos e realizando o ataque
+
+1º - Utilizaremos dois comandos para criar e salvar no Kali Linux arquivos de texto com possíveis nomes de usuários e senhas comuns.
+Para usuários utilizaremos: echo -e "user\nmsfadmin\nadmin\nroot" > users.txt
+E para senhas utilizaremos: echo -e "123456\npassword\nqwerty\nmsfadmin" > pass.txt
+
+<p align="left">
+    <img src="images/print7A.png" alt="Wordlists" width="400">
+</p>
+
+2º - Agora partiremos pro ataque com a ferramenta Medusa
+Utilizaremos o comando: medusa -h 192.168.XX.XXX -U users.txt -P pass.txt -M ftp -t6
+
+<p align="left">
+    <img src="images/print8.png" alt="MedusaAttack1" width="400">
+</p>
+
+Como resultado do ataque, foram encontrados o login msfadmin e a senha msfadmin como credenciais válidas. Significando que conseguiremos acessar o sistema via FTP com essas credenciais.
+
+3º - Novamente, entraremos no FTP, confirmando se as credenciais obtidas de fato estão corretas
+
+
+<p align="left">
+    <img src="images/print9.png" alt="MedusaAttackSucessful1" width="400">
+</p>
+

@@ -135,3 +135,34 @@ O comando será: smbclient -L //192.168.XX.XXX -U msfadmin
 <p align="left">
     <img src="images/print16.png" alt="SMB_Login" width="400">
 </p>
+
+## Recomendações de Mitigação 
+
+Para se proteger de ataques de brute force, como os que executamos utilizando ferramentas como a Medusa, é necessário adotar uma abordagem em camadas que combine políticas de senhas fortes, proteção na camada de rede e sistemas de monitoramento.
+
+
+### 1° Fortalecer as políticas de autenticação
+
+Utilize senhas fortes: Exija senhas longas, complexas, misturando letras maiúsculas e minúsculas, números e símbolos, e que não sejam baseadas em informações pessoais. Recomendo fortemente a utilização de gerenciadores de senha como o Bitwarden, além do mesmo proteger suas senhas, pode gerar facilmente senhas extremamente fortes.
+
+Autenticação multifator (MFA): Implemente a autenticação de dois ou mais fatores para exigir uma segunda forma de verificação da sua conta após o uso da senha. Isso torna a descoberta da senha inútil sem o segundo fator, e te dá tempo para trocar a senha caso ocorra uma tentativa de invasão.
+
+Limite de tentativas de login: Configure o sistema para bloquear temporariamente um usuário ou endereço IP após um número limitado de tentativas de login incorretas.
+
+CAPTCHA: Use sistemas como o CAPTCHA ou o reCAPTCHA que exigem uma interação humana para liberar o acesso, impedindo a automação desses ataques. 
+
+### 2° Implementar medidas de segurança na rede
+   
+Firewalls: Configure um firewall no seu sistema para detectar e bloquear tráfego de rede suspeito.
+
+Monitoramento de IP: Monitore qualquer endereço de IP que esteja tentando acessar o sistema. Se um único IP fizer um número incomum de tentativas de login, ele deve ser automaticamente bloqueado.
+
+Alterar portas padrão: Mude a porta padrão de serviços como o SSH para outra. Isso obviamente não impede o ataque, mas o torna mais difícil para invasores que usam scripts automáticos. 
+
+### 3° Melhorar a segurança do sistema
+
+Atualizações regulares: Mantenhe todos os sistemas e aplicativos atualizados para corrigir vulnerabilidades que poderiam ser exploradas por usuários mal-intencionados.
+
+Remover contas não usadas: Desative ou delete contas que não são mais úteis. Isso diminui a chance de alguma conta antiga ser comprometida e revelar mais informações suas do que deveria.
+
+Criptografar dados sensíveis: Garanta que os dados armazenados, incluindo as senhas, sejam criptografados para que não sejam acessíveis mesmo em caso de violação.
